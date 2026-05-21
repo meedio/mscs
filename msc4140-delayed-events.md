@@ -6,6 +6,17 @@ MSC4140 introduces a mechanism for Matrix clients to **schedule an event to be s
 
 ---
 
+## ⚡ Live Update (May 21, 2026)
+
+MSC4140 is now **"Proposed for FCP readiness"** in the SCT project — the most significant status change since this research began.
+
+- @turt2live on May 19, 2026: *"this is looking closer to being ready for FCP"*
+- @Johennes conducted a comprehensive review pass May 18–20, 2026 with wording suggestions
+- **MSC4479** ("Shorten alternatives") was **merged** on May 20, 2026
+- **MSC4478** ("Move use cases section out") is in progress (May 20, 2026)
+- Implementation TODOs removed from PR description (May 20, 2026) — tracked in comments instead
+- Labels updated: now includes `00-weekly-pings` (weekly SCT tracking) alongside `implementation-needs-checking`
+
 ## Status
 
 | Field | Value |
@@ -14,28 +25,28 @@ MSC4140 introduces a mechanism for Matrix clients to **schedule an event to be s
 | **State** | Open |
 | **Author** | [@toger5](https://github.com/toger5) (Timo K, Element) |
 | **Created** | May 7, 2024 |
-| **Last updated** | March 13, 2026 |
-| **Labels** | `voip`, `proposal`, `client-server`, `kind:feature`, `matrix-2.0`, `implementation-needs-checking` |
-| **FCP** | Not started (SCT checklist exists; known implementation gaps remain) |
-| **Lifecycle stage** | Implementation complete, gaps being resolved |
+| **Last updated** | May 20, 2026 |
+| **Labels** | `00-weekly-pings`, `voip`, `proposal`, `client-server`, `kind:feature`, `matrix-2.0`, `implementation-needs-checking` |
+| **FCP** | **Proposed for FCP readiness** — active SCT review; @turt2live requested changes; @Johennes actively reviewing |
+| **SCT Project Status** | "Proposed for FCP readiness" |
+| **Lifecycle stage** | Final spec review pass; FCP expected Q2/Q3 2026 |
 
 ### Implementations
 
 | Component | Status | Link |
 |-----------|--------|------|
-| Synapse | ✅ Done | [element-hq/synapse#17326](https://github.com/element-hq/synapse/pull/17326) |
-| Element Call (SPA) | ✅ Done | [element-hq/element-call#2529](https://github.com/element-hq/element-call/pull/2529), [matrix-org/matrix-js-sdk#4294](https://github.com/matrix-org/matrix-js-sdk/pull/4294) |
-| Element Web (embedded) | ✅ Done | [matrix-org/matrix-widget-api#90](https://github.com/matrix-org/matrix-widget-api/pull/90) |
+| Synapse | ✅ Done (5 PRs) | [#17326](https://github.com/element-hq/synapse/pull/17326), [#19038](https://github.com/element-hq/synapse/pull/19038), [#19354](https://github.com/element-hq/synapse/pull/19354), [#19479](https://github.com/element-hq/synapse/pull/19479), [#19539](https://github.com/element-hq/synapse/pull/19539) |
+| matrix-js-sdk | ✅ Done (3 PRs) | [#4294](https://github.com/matrix-org/matrix-js-sdk/pull/4294), [#5066](https://github.com/matrix-org/matrix-js-sdk/pull/5066), [#5133](https://github.com/matrix-org/matrix-js-sdk/pull/5133) |
+| Element Call (SPA) | ✅ Done | [element-hq/element-call#2529](https://github.com/element-hq/element-call/pull/2529) |
+| Element Web (embedded) | ✅ Done | [matrix-org/matrix-widget-api#90](https://github.com/matrix-org/matrix-widget-api/pull/90), [#143](https://github.com/matrix-org/matrix-widget-api/pull/143) |
 | Element X | ✅ Done | [ruma/ruma#1845](https://github.com/ruma/ruma/pull/1845), [matrix-org/matrix-rust-sdk#3600](https://github.com/matrix-org/matrix-rust-sdk/pull/3600) |
 
-### Known implementation gaps (as of March 2026)
+### Open spec issues (not implementation blockers)
 
-Three specific commits have unresolved gaps flagged by the author:
-- `3ef314f861f3e54a9a474e624eba3684ee6ea978`
-- `95045cf00eeb2af0976b31d2262875ef7eefaeec`
-- `49b200dcc11de286974925177b1e184cd905e6fa`
-
-A prior block was lifted (~~Blocked~~), but FCP has still not been proposed.
+- `M_INVALID_PARAM` vs `M_MAX_DELAY_EXCEEDED` error code — likely moving max delay to `/capabilities` instead, making the custom error unnecessary.
+- `running_since` field naming — likely rename to `scheduled_ts` for consistency with other `..._ts` fields.
+- `delay_id` vs `delay_token` — @Johennes proposed rename for security clarity; @AndrewFerr against (OAuth scopes are the long-term answer).
+- Use cases section to be shortened or removed (MSC4478 in progress).
 
 ---
 

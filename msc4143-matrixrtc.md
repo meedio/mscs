@@ -15,17 +15,18 @@ MSC4143 defines **MatrixRTC** — the foundational protocol for real-time commun
 | **Author** | [@toger5](https://github.com/toger5) (Timo K, Element) |
 | **Created** | May 10, 2024 |
 | **Last updated** | March 17, 2026 |
-| **Labels** | `proposal`, `voip`, `client-server`, `matrix-2.0` |
+| **Labels** | `proposal`, `voip`, `client-server`, `kind:core`, `matrix-2.0` |
 | **FCP** | Not started |
-| **Lifecycle stage** | Community review / implementation testing |
+| **SCT Status** | 9-task SCT checklist created by @turt2live on May 19, 2026 (in a PR comment) |
+| **Lifecycle stage** | Blocked on dependencies; SCT is preparing for review |
 
 ### Blocking dependencies
 
 MSC4143 is **explicitly blocked** on:
-1. **MSC4354 (Sticky Events)** — must land and be stable first.
-2. **MSC4140 (Cancellable Delayed Events)** — must land and be stable first.
+1. **MSC4354 (Sticky Events)** — under active review May 19–21, 2026; @turt2live approved; @richvdh has requested changes.
+2. **MSC4140 (Cancellable Delayed Events)** — now "Proposed for FCP readiness"; @turt2live says "looking closer to being ready for FCP" (May 19, 2026).
 
-After those land, implementation testing must pass before FCP can be proposed.
+After those land, implementation testing must pass before FCP can be proposed. The SCT has already begun preparation by creating the 9-task checklist on May 19, 2026, indicating readiness to review MSC4143 once dependencies clear.
 
 ---
 

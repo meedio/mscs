@@ -6,6 +6,18 @@ MSC4354 introduces **Sticky Events** — a new Matrix communication primitive th
 
 ---
 
+## ⚡ Live Update (May 21, 2026)
+
+MSC4354 is under **the most active review since it opened**. As of May 19–21, 2026:
+- @turt2live **approved** the proposal.
+- @richvdh has **requested changes** (the outstanding `unresolved-concerns` source).
+- @Johennes conducted a comprehensive review pass on May 19–20.
+- **MSC4480** "Sliding Sync Extension: Sticky Events" was **split out** into a separate proposal (May 20, 2026) to simplify MSC4354.
+- The proposal text was updated on May 20, 2026 removing the Sliding Sync section.
+- Synapse 1.148.0 (February 2026) ships sticky events support (`synapse#19365`).
+- Trixnity implementation exists (GitLab MR #687).
+- Dart SDK implementation in progress (`matrix-dart-sdk#2238`, opened April 2026).
+
 ## Status
 
 | Field | Value |
@@ -14,10 +26,11 @@ MSC4354 introduces **Sticky Events** — a new Matrix communication primitive th
 | **State** | Open |
 | **Author** | [@kegsay](https://github.com/kegsay) (Kegan Dougal, Element) |
 | **Created** | September 16, 2025 |
-| **Last updated** | April 1, 2026 |
+| **Last updated** | May 20, 2026 |
 | **Labels** | `proposal`, `client-server`, `kind:core`, `unresolved-concerns`, `matrix-2.0` |
 | **FCP** | FCP tickyboxes exist; `unresolved-concerns` label present — not yet in FCP countdown |
-| **Lifecycle stage** | Implementations done; resolving outstanding concerns |
+| **SCT Project Status** | "Tracking for review" |
+| **Lifecycle stage** | Active review in progress (May 2026); @turt2live approved; @richvdh requested changes |
 
 ### Implementations
 
@@ -25,8 +38,11 @@ MSC4354 introduces **Sticky Events** — a new Matrix communication primitive th
 |-----------|--------|------|
 | Client (receive/handle) — matrix-js-sdk | ✅ Done | [matrix-org/matrix-js-sdk#5017](https://github.com/matrix-org/matrix-js-sdk/pull/5017) |
 | Client (usage) — Element Call | ✅ Done | [element-hq/element-call#3513](https://github.com/element-hq/element-call/pull/3513) |
-| Server — Synapse | ✅ Done | [element-hq/synapse#18968](https://github.com/element-hq/synapse/pull/18968) |
+| Server — Synapse | ✅ Done | [element-hq/synapse#18968](https://github.com/element-hq/synapse/pull/18968) + [#19365](https://github.com/element-hq/synapse/pull/19365), [#19591](https://github.com/element-hq/synapse/pull/19591) |
 | Tests — Complement | ✅ Done | [matrix-org/complement#806](https://github.com/matrix-org/complement/pull/806) |
+| Server — Trixnity | ✅ Done | [GitLab MR #687](https://gitlab.com/connect2x/trixnity/trixnity/-/merge_requests/687) |
+| Client — Dart SDK (famedly) | 🔄 In progress | [matrix-dart-sdk#2238](https://github.com/famedly/matrix-dart-sdk/pull/2238) (opened April 2026) |
+| Sliding Sync extension | 🆕 Separate MSC | [MSC4480](https://github.com/matrix-org/matrix-spec-proposals/pull/4480) (split out May 20, 2026) |
 
 ---
 
@@ -121,7 +137,14 @@ An addendum defines a key-value store mode: the `sticky_key` field in the event 
 
 ## Outstanding Concerns
 
-The `unresolved-concerns` label indicates there are open issues that must be resolved before FCP can proceed. Specific concerns as of April 2026 are tracked in the PR thread.
+The `unresolved-concerns` label indicates there are open issues that must be resolved before FCP can proceed. Based on the active May 19–21, 2026 review:
+
+1. **@richvdh's "requested changes"** — The primary blocker. @richvdh has not approved; their specific concerns are in the PR thread. This is the source of the `unresolved-concerns` label.
+2. **Key-value store semantics** — @Johennes flagged (May 19): "Nothing stops users sending multiple events with the same event type and `sticky_key`" — tie-breaking language needs clarification.
+3. **Forward extremities** — When sticky events from offline servers are received later, they increase forward extremities and may impact state resolution performance. The spec offers a mitigation (dummy events threshold) but needs clearer guidance.
+4. **MSC4268 (Sharing room keys)** has now merged — the proposal's text noting this as a future improvement needs updating to reflect it as resolved.
+
+**MSC4480 (Sliding Sync Extension: Sticky Events)** was split out on May 20, 2026, removing that complexity from this proposal. It is now a separate dependency.
 
 ---
 
